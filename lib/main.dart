@@ -1,11 +1,10 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:homeword/routes/app_routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(DevicePreview(builder: (context) => App()));
+  runApp(App());
 }
 
 class App extends StatelessWidget {

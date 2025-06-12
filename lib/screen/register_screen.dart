@@ -21,11 +21,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: ListView(
           children: [
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height,
+            Expanded(
               child: Form(
                 key: _keyForm,
                 child: Column(
@@ -48,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       validator:
                           (value) =>
                               value == null || value.isEmpty
-                                  ? "Please enter your Full"
+                                  ? "Please enter your Full Name"
                                   : null,
                       decoration: InputDecoration(
                         labelText: "Full Name",
