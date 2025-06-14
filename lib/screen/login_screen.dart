@@ -123,7 +123,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     }
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,
+                  ),
                   child: Text(
                     "Login",
                     style: TextStyle(color: Colors.white, fontSize: 15),
@@ -141,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: Text(
                   "Don't have an account? Register",
-                  style: TextStyle(color: Colors.red),
+                  style: TextStyle(color: Colors.blueAccent),
                 ),
               ),
             ],

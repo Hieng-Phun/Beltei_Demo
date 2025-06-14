@@ -166,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
+                          backgroundColor: Colors.blueAccent,
                         ),
                         child: Text(
                           "Register",
@@ -185,7 +185,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       child: Text(
                         "Have an account already? Login",
-                        style: TextStyle(color: Colors.red),
+                        style: TextStyle(color: Colors.blueAccent),
                       ),
                     ),
                   ],

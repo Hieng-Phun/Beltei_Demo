@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   "$fullName",
                   style: TextStyle(
-                    color: Colors.red,
+                    color: Colors.blueAccent,
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
@@ -65,6 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 prefixIcon: Icon(Icons.search),
               ),
             ),
+            SizedBox(height: 80),
+            Center(child: Text("Home Page")),
           ],
         ),
       ),

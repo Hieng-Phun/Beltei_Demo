@@ -25,7 +25,9 @@ class SplashScreen extends StatelessWidget {
                       AppRoutes.loginScreen,
                     );
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,
+                  ),
                   child: Text(
                     "Login an Account",
                     style: TextStyle(color: Colors.white),
@@ -46,12 +48,12 @@ class SplashScreen extends StatelessWidget {
                     backgroundColor: Colors.white,
                     side: BorderSide(
                       width: 1, // the thickness
-                      color: Colors.red, // the color of the border
+                      color: Colors.blueAccent, // the color of the border
                     ),
                   ),
                   child: Text(
                     "Log In as Guest",
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: Colors.blueAccent),
                   ),
                 ),
               ),
