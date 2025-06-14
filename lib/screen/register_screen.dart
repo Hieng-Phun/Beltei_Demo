@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homeword/data/shared_preference.dart';
 import 'package:homeword/routes/app_routes.dart';
 import 'package:homeword/widgets/logo.dart';
 import 'package:homeword/widgets/social.dart';
@@ -15,13 +16,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _isObscure = true;
   bool _isEmailValid = false;
   bool _isFullName = false;
-  bool _isUserName = false;
+
+  final _fullNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 35),
         child: ListView(
           children: [
             Expanded(
@@ -31,8 +35,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Logo(),
-                    SizedBox(height: 50),
+                    SizedBox(height: 30),
                     TextFormField(
+                      controller: _fullNameController,
                       onChanged: (value) {
                         if (value.isNotEmpty) {
                           setState(() {
@@ -63,36 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 15),
                     TextFormField(
-                      onChanged: (value) {
-                        if (value.isNotEmpty) {
-                          setState(() {
-                            _isUserName = true;
-                          });
-                        } else {
-                          setState(() {
-                            _isUserName = false;
-                          });
-                        }
-                      },
-                      validator:
-                          (value) =>
-                              value == null || value.isEmpty
-                                  ? "Please enter your username"
-                                  : null,
-                      decoration: InputDecoration(
-                        labelText: "Username",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        prefixIcon: Icon(Icons.email, color: Colors.grey),
-                        suffixIcon:
-                            _isUserName
-                                ? Icon(Icons.check_circle, color: Colors.green)
-                                : Icon(Icons.check_circle, color: Colors.grey),
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    TextFormField(
+                      controller: _emailController,
                       onChanged: (value) {
                         if (value.contains("@")) {
                           setState(() {
@@ -123,6 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 15),
                     TextFormField(
+                      controller: _passwordController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Please enter your password";
@@ -172,10 +149,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_keyForm.currentState?.validate() ?? false) {
+                            String fullName = _fullNameController.text;
+                            String email = _emailController.text;
+                            String password = _passwordController.text;
+
+                            SharedPreData.register(fullName, email, password);
+
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Logging In...")),
+                              SnackBar(
+                                content: Text("Register successfully..."),
+                              ),
                             );
-                            AppRoutes.key.currentState?.pushReplacementNamed(
+                            AppRoutes.key.currentState!.pushReplacementNamed(
                               AppRoutes.mainScreen,
                             );
                           }
@@ -194,7 +179,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 10),
                     TextButton(
                       onPressed: () {
-                        AppRoutes.key.currentState?.pushNamed(
+                        AppRoutes.key.currentState!.pushReplacementNamed(
                           AppRoutes.loginScreen,
                         );
                       },

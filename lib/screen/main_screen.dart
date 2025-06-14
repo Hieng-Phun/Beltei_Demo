@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:homeword/screen/account_screen.dart';
+import 'package:homeword/screen/favorite_screen.dart';
+import 'package:homeword/screen/home_screen.dart';
+import 'package:homeword/screen/setting_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -8,11 +12,26 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> screens = [
+    HomeScreen(),
+    FavoriteScreen(),
+    SettingScreen(),
+    AccountScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+        title: Row(
+          children: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+            SizedBox(width: 15),
+            Image.asset("assets/beltei.png", height: 35),
+          ],
+        ),
         actions: [
           Icon(Icons.notifications),
           SizedBox(width: 15),
@@ -20,34 +39,19 @@ class _MainScreenState extends State<MainScreen> {
           SizedBox(width: 20),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Hello, Guest",
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              "What do you want to read today?",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(221, 37, 37, 37),
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: screens.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.red,
         showSelectedLabels: true,
         showUnselectedLabels: true,
+
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(

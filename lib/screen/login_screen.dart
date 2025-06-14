@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homeword/data/shared_preference.dart';
 import 'package:homeword/routes/app_routes.dart';
 import 'package:homeword/widgets/logo.dart';
 import 'package:homeword/widgets/social.dart';
@@ -14,6 +15,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final _keyForm = GlobalKey<FormState>();
   bool _isObscure = true;
   bool _isEmailValid = false;
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Logo(),
               SizedBox(height: 50),
               TextFormField(
+                controller: _emailController,
                 onChanged: (value) {
                   if (value.contains("@")) {
                     setState(() {
@@ -57,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 15),
               TextFormField(
+                controller: _passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter your password";
@@ -103,10 +110,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_keyForm.currentState?.validate() ?? false) {
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(SnackBar(content: Text("Logging In...")));
-                      AppRoutes.key.currentState?.pushReplacementNamed(
+                      String email = _emailController.text;
+                      String password = _passwordController.text;
+
+                      SharedPreData.login(email, password);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Login successfully...")),
+                      );
+                      AppRoutes.key.currentState!.pushReplacementNamed(
                         AppRoutes.mainScreen,
                       );
                     }
@@ -123,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 25),
               TextButton(
                 onPressed: () {
-                  AppRoutes.key.currentState?.pushNamed(
+                  AppRoutes.key.currentState!.pushReplacementNamed(
                     AppRoutes.registerScreen,
                   );
                 },

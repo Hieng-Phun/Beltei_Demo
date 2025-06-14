@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
                 width: MediaQuery.sizeOf(context).width,
                 child: ElevatedButton(
                   onPressed: () {
-                    AppRoutes.key.currentState?.pushReplacementNamed(
+                    AppRoutes.key.currentState!.pushReplacementNamed(
                       AppRoutes.loginScreen,
                     );
                   },
@@ -38,7 +38,7 @@ class SplashScreen extends StatelessWidget {
                 width: MediaQuery.sizeOf(context).width,
                 child: ElevatedButton(
                   onPressed: () {
-                    AppRoutes.key.currentState?.pushReplacementNamed(
+                    AppRoutes.key.currentState!.pushReplacementNamed(
                       AppRoutes.mainScreen,
                     );
                   },
