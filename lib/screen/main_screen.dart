@@ -30,8 +30,16 @@ class _MainScreenState extends State<MainScreen> {
         title: Row(
           children: [
             IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
-            SizedBox(width: 15),
+            SizedBox(width: 5),
             Image.asset("assets/beltei.png", height: 35),
+            SizedBox(width: 10),
+            Text(
+              "Beltei",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
           ],
         ),
         actions: [
@@ -40,7 +48,6 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.notifications),
             iconSize: 25,
           ),
-          SizedBox(width: 5),
           IconButton(
             onPressed: () {
               SharedPreData.logout();

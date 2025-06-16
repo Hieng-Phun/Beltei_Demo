@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 100),
             child: Form(
               key: _keyForm,
               child: Column(
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextFormField(
                     controller: _emailController,
                     onChanged: (value) {
-                      if (value.contains("@")) {
+                      if (value.contains("@gmail.com")) {
                         setState(() {
                           _isEmailValid = true;
                         });
@@ -140,16 +140,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 25),
                   Social(),
                   SizedBox(height: 5),
-                  TextButton(
-                    onPressed: () {
-                      AppRoutes.key.currentState!.pushReplacementNamed(
-                        AppRoutes.registerScreen,
-                      );
-                    },
-                    child: Text(
-                      "Don't have an account? Register",
-                      style: TextStyle(color: Colors.blueAccent),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an account?",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          AppRoutes.key.currentState!.pushReplacementNamed(
+                            AppRoutes.registerScreen,
+                          );
+                        },
+                        child: Text(
+                          "Register",
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

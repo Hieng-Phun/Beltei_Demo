@@ -27,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 100),
             child: Form(
               key: _keyForm,
               child: Column(
@@ -69,7 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   TextFormField(
                     controller: _emailController,
                     onChanged: (value) {
-                      if (value.contains("@")) {
+                      if (value.contains("@gmail.com")) {
                         setState(() {
                           _isEmailValid = true;
                         });
@@ -174,16 +174,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(height: 15),
                   Social(),
                   SizedBox(height: 5),
-                  TextButton(
-                    onPressed: () {
-                      AppRoutes.key.currentState!.pushReplacementNamed(
-                        AppRoutes.loginScreen,
-                      );
-                    },
-                    child: Text(
-                      "Have an account already? Login",
-                      style: TextStyle(color: Colors.blueAccent),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Have an account already?",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          AppRoutes.key.currentState!.pushReplacementNamed(
+                            AppRoutes.loginScreen,
+                          );
+                        },
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
